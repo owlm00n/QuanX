@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <title>登录界面-下载中心</title>
+    <link rel="stylesheet" href="css/index.css?v=1"/>
+   <link rel="stylesheet" type="text/css" href="/scripts/artdialog/ui-dialog.css" />
+ 
+
+    <style type="text/css">
+</style>
+</head>
+
+<body>  
+    <form method="post" action="#" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="dtRBfUdS6s81PD/S9c6cxaU/ZGbJWz9PwjtOYTOoFPIHP99nKRELJnbhxwX9mx3DL5+aMpw2aSIr6G2B1T+a/t6KC2kb6Ay45/P0KUFPPAd3kQk+kH0OlOFo0imBT+oscbuoCK9237P/Js5nqEdrlonNRz6irXmqQelQTupvH+v1zbkrvexabvZP/ahPCbRPZB91UkMq//hk3yBbvbo3+aRw1p1GPgdAT3BkLo0W1dGQCGoSMTmoEy5hNo8OfOFQ" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="93FC4793" />
+</div>
+          <div class="loading">
+  <div class="loadbox"> <img src="../../images/loading.gif"> 页面加载中... </div>
+</div>
+    <div class="box">   
+     
+        <!-- 登录 -->
+        <div class="login" id="login">
+            <div class="login_top">
+                <img src="images/favicon.png" alt="头像">
+                <h2>欢 迎 登 录 </h2>
+            </div> 
+    
+            <div class="login_bottom">
+                   <p id='timeshort1' style="color:red"></p>
+                    <!-- 邮箱/手机号输入框 -->
+                    <input name="txtUser_sign_in" type="text" id="txtUser_sign_in" class="input" placeholder="请输入手机号码" Value="15779094967" />
+                    <!-- 密码输入框 -->
+                  <input name="txtPwd_sign_in" type="password" id="txtPwd_sign_in" class="input" placeholder="请输入密码" Value="bao2043." />
+             
+                <!-- 确认框/忘记密码 -->
+                <p style="margin-bottom:10px">
+                    <span type="checkbox"><input id="save_account" type="checkbox" name="save_account" checked="checked" /></span>
+                
+                    <span>记住用户名</span>    <span type="checkbox"><input id="save_pass" type="checkbox" name="save_pass" checked="checked" /></span> <span>记住密码</span>
+   <a href="repass.aspx">忘记密码</a>?
+                </p>
+                <!-- 登录按钮 -->
+
+                  <input type="submit" name="btnsubmit" value="登  录" onclick="return checkInput();" id="btnsubmit" class="btn btn-lg btn-info btn-block" type="submit" /> 
+                <p>
+                    <span>新用户?</span>
+                    <a href="joinus.aspx"  style="font-size:12pt;font-weight:bolder;text-decoration:underline" > 注 册</a>
+                </p>
+            </div>
+        </div>
+  
+    </div> 
+          <script type="text/javascript" charset="utf-8" src="/scripts/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/scripts/jquery/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/scripts/artdialog/dialog-plus-min.js"></script>
+        <script type="text/javascript">
+            function OrderConfirm_openid() {
+
+                var winDialog = top.dialog({ title: '提示', content: "还未绑定小哈码,请前往获取小哈码！", okValue: '确定', ok: function () { window.location.href = 'getopenid.aspx'; return false; }, cancelValue: '取消', cancel: function () { } }).showModal();
+            }
+              function OrderConfirm()
+    {
+    
+        var winDialog = top.dialog({ title: '提示', content: "会员注册成功,请重新登录！", okValue: '确定', ok: function () { window.location.href = 'login.aspx'; return false;  }, cancelValue: '取消', cancel: function () { } }).showModal();
+       }
+              function setvalue(title)
+      {
+       
+        $('#timeshort').html(title);
+    }
+        </script>
+    </form>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $(window).load(function () {
+        $(".loading").fadeOut('slow');
+            $('#timeshort').html('');
+    })
+
+    window.document.oncontextmenu = function(){ 
+return false;
+
+} 
+    $(document).keydown(function (event) {
+        //屏蔽F12、Ctrl+R刷新
+        if ((event.keyCode == 123) || (event.ctrlKey && event.keyCode == 82)) {
+            event.keyCode = 0;
+            return false;
+        }
+        //屏蔽shift+F10菜单
+        if (event.shiftKey && event.keyCode == 121) return false;
+    });
+    $(document).ready(function(){
+        $("#btnsubmit").click(function () {
+            // $(".loading").fadeOut('slow')
+ 
+  })
+})
+    const loginBtn = document.getElementById("login");
+    const registerBtn = document.getElementById("register");
+    const fistForm = document.getElementById("form1");
+  
+    function showlogin() {
+
+        loginBtn.style.display = "block";
+        registerBtn.style.display = "none";
+      //  secondForm.addEventListener("submit", (e) => e.preventDefault());
+    }
+
+    function showregister() {
+
+        loginBtn.style.display = "none";
+        registerBtn.style.display = "block";
+       // fistForm.addEventListener("submit", (e) => e.preventDefault());
+    }
+
+      function checkInput() {
+      
+          var txtPwd_sign_in = $("#txtPwd_sign_in").val(); 
+               
+           var code =$("#txtUser_sign_in").val(); 
+ 
+           if (code.length!=11)
+           {
+                    $('#timeshort1').html('请输入正确的手机号码！');  
+       
+               $("#txtUser_sign_in").focus();
+               return false;
+        
+          }
+           
+  
+          
+  if (txtPwd_sign_in == "") {
+               $('#timeshort1').html('请输入密码！');  
+             $("#txtPwd_sign_in").focus();
+              return false;
+         }
+         else {
+             if (txtPwd_sign_in.length < 6) {
+                   $('#timeshort1').html('请输入至少6位数密码！');  
+             
+                 $("#txtPwd_sign_in").focus();
+                 return false;
+             }
+           
+          }
+          $(".loading").show();
+          return true;
+         
+       }
+     
+     function checkregister() {
+         //return;
+           var code =$("#txtphone").val(); 
+           var txtcode =$("#txtcode").val(); 
+         var txtPassword = $("#txtPassword").val(); 
+         
+         var txtconfirmpassword = $("#txtconfirmpassword").val(); 
+       
+           if (code.length!=11)
+           {
+                   $('#timeshort').html('请输入正确的手机号码！');
+            
+               $("#txtphone").focus();
+            
+                 return false;
+         }
+      
+         if (txtPassword == "") {
+               $('#timeshort').html('请输入密码！');  
+             $("#txtPassword").focus();
+              return false;
+         }
+         else {
+             if (txtPassword.length < 6) {
+                   $('#timeshort').html('请输入至少6位数密码！');  
+             
+                 $("#txtPassword").focus();
+                 return false;
+             }
+             else {
+              if (txtconfirmpassword == "")
+                {
+         
+                    $('#timeshort').html('请输入确认密码！');  
+             $("#txtconfirmpassword").focus();
+              return false;
+                }
+               
+             }
+         }
+        
+            if (txtPassword != "" && txtconfirmpassword != "")
+         {
+           
+             if (txtPassword!= txtconfirmpassword)
+             {
+           
+                           $('#timeshort').html('确认密码不匹配！');  
+
+                return false;
+             }
+         
+
+         }
+         if (txtcode == "") {
+                    $('#timeshort').html('请输入小哈码！');
+            // alert("请输入验证码！");
+             $("#txtcode").focus();
+          return false;
+            }
+          else {
+             if (txtcode.length <27)
+             {
+                $('#timeshort').html('请输入正确的小哈码！');
+               //alert("请输入6位数验证码！");
+               $("#txtcode").focus();
+           return false;
+                }
+              
+         }
+                  $(".loading").show();
+              $('#timeshort').html('');  
+           return true;
+       }
+
+    function showguid() {
+
+        window.location.href = 'showguid.html';
+
+
+    }
+</script>
+
+2024/05/13 23:59:12:314  <console>    [JS Console]: 200
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <title>登录界面-下载中心</title>
+    <link rel="stylesheet" href="css/index.css?v=1"/>
+   <link rel="stylesheet" type="text/css" href="/scripts/artdialog/ui-dialog.css" />
+ 
+
+    <style type="text/css">
+</style>
+</head>
+
+<body>  
+    <form method="post" action="#" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="VoJHXN3TkwYVL7LjUoukaYs68fqPK3LJVaXs8KV1Afr0+mmrr/N2wBjTFvZY21RiNbjlesr43JKgJvreSnrLmBSLPMNLo1f+ATdPNbZw4Z+1DzQvsZxm1mkYsZCe03vdvTEv+qHb/NJzfYoIQlNDWzvKyrX50wcDpWTNY+PbTfR+AuvShELBr9yewodaF8G8DGJwDavCnHAI25+8fEwsDqev6mi3tvc9nRhh0Z1jqIxQ4IRBbY4m1JDqrqLH1n1N" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="93FC4793" />
+</div>
+          <div class="loading">
+  <div class="loadbox"> <img src="../../images/loading.gif"> 页面加载中... </div>
+</div>
+    <div class="box">   
+     
+        <!-- 登录 -->
+        <div class="login" id="login">
+            <div class="login_top">
+                <img src="images/favicon.png" alt="头像">
+                <h2>欢 迎 登 录 </h2>
+            </div> 
+    
+            <div class="login_bottom">
+                   <p id='timeshort1' style="color:red"></p>
+                    <!-- 邮箱/手机号输入框 -->
+                    <input name="txtUser_sign_in" type="text" id="txtUser_sign_in" class="input" placeholder="请输入手机号码" Value="13650346181" />
+                    <!-- 密码输入框 -->
+                  <input name="txtPwd_sign_in" type="password" id="txtPwd_sign_in" class="input" placeholder="请输入密码" Value="man772299" />
+             
+                <!-- 确认框/忘记密码 -->
+                <p style="margin-bottom:10px">
+                    <span type="checkbox"><input id="save_account" type="checkbox" name="save_account" checked="checked" /></span>
+                
+                    <span>记住用户名</span>    <span type="checkbox"><input id="save_pass" type="checkbox" name="save_pass" checked="checked" /></span> <span>记住密码</span>
+   <a href="repass.aspx">忘记密码</a>?
+                </p>
+                <!-- 登录按钮 -->
+
+                  <input type="submit" name="btnsubmit" value="登  录" onclick="return checkInput();" id="btnsubmit" class="btn btn-lg btn-info btn-block" type="submit" /> 
+                <p>
+                    <span>新用户?</span>
+                    <a href="joinus.aspx"  style="font-size:12pt;font-weight:bolder;text-decoration:underline" > 注 册</a>
+                </p>
+            </div>
+        </div>
+  
+    </div> 
+          <script type="text/javascript" charset="utf-8" src="/scripts/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/scripts/jquery/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/scripts/artdialog/dialog-plus-min.js"></script>
+        <script type="text/javascript">
+            function OrderConfirm_openid() {
+
+                var winDialog = top.dialog({ title: '提示', content: "还未绑定小哈码,请前往获取小哈码！", okValue: '确定', ok: function () { window.location.href = 'getopenid.aspx'; return false; }, cancelValue: '取消', cancel: function () { } }).showModal();
+            }
+              function OrderConfirm()
+    {
+    
+        var winDialog = top.dialog({ title: '提示', content: "会员注册成功,请重新登录！", okValue: '确定', ok: function () { window.location.href = 'login.aspx'; return false;  }, cancelValue: '取消', cancel: function () { } }).showModal();
+       }
+              function setvalue(title)
+      {
+       
+        $('#timeshort').html(title);
+    }
+        </script>
+    </form>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $(window).load(function () {
+        $(".loading").fadeOut('slow');
+            $('#timeshort').html('');
+    })
+
+    window.document.oncontextmenu = function(){ 
+return false;
+
+} 
+    $(document).keydown(function (event) {
+        //屏蔽F12、Ctrl+R刷新
+        if ((event.keyCode == 123) || (event.ctrlKey && event.keyCode == 82)) {
+            event.keyCode = 0;
+            return false;
+        }
+        //屏蔽shift+F10菜单
+        if (event.shiftKey && event.keyCode == 121) return false;
+    });
+    $(document).ready(function(){
+        $("#btnsubmit").click(function () {
+            // $(".loading").fadeOut('slow')
+ 
+  })
+})
+    const loginBtn = document.getElementById("login");
+    const registerBtn = document.getElementById("register");
+    const fistForm = document.getElementById("form1");
+  
+    function showlogin() {
+
+        loginBtn.style.display = "block";
+        registerBtn.style.display = "none";
+      //  secondForm.addEventListener("submit", (e) => e.preventDefault());
+    }
+
+    function showregister() {
+
+        loginBtn.style.display = "none";
+        registerBtn.style.display = "block";
+       // fistForm.addEventListener("submit", (e) => e.preventDefault());
+    }
+
+      function checkInput() {
+      
+          var txtPwd_sign_in = $("#txtPwd_sign_in").val(); 
+               
+           var code =$("#txtUser_sign_in").val(); 
+ 
+           if (code.length!=11)
+           {
+                    $('#timeshort1').html('请输入正确的手机号码！');  
+       
+               $("#txtUser_sign_in").focus();
+               return false;
+        
+          }
+           
+  
+          
+  if (txtPwd_sign_in == "") {
+               $('#timeshort1').html('请输入密码！');  
+             $("#txtPwd_sign_in").focus();
+              return false;
+         }
+         else {
+             if (txtPwd_sign_in.length < 6) {
+                   $('#timeshort1').html('请输入至少6位数密码！');  
+             
+                 $("#txtPwd_sign_in").focus();
+                 return false;
+             }
+           
+          }
+          $(".loading").show();
+          return true;
+         
+       }
+     
+     function checkregister() {
+         //return;
+           var code =$("#txtphone").val(); 
+           var txtcode =$("#txtcode").val(); 
+         var txtPassword = $("#txtPassword").val(); 
+         
+         var txtconfirmpassword = $("#txtconfirmpassword").val(); 
+       
+           if (code.length!=11)
+           {
+                   $('#timeshort').html('请输入正确的手机号码！');
+            
+               $("#txtphone").focus();
+            
+                 return false;
+         }
+      
+         if (txtPassword == "") {
+               $('#timeshort').html('请输入密码！');  
+             $("#txtPassword").focus();
+              return false;
+         }
+         else {
+             if (txtPassword.length < 6) {
+                   $('#timeshort').html('请输入至少6位数密码！');  
+             
+                 $("#txtPassword").focus();
+                 return false;
+             }
+             else {
+              if (txtconfirmpassword == "")
+                {
+         
+                    $('#timeshort').html('请输入确认密码！');  
+             $("#txtconfirmpassword").focus();
+              return false;
+                }
+               
+             }
+         }
+        
+            if (txtPassword != "" && txtconfirmpassword != "")
+         {
+           
+             if (txtPassword!= txtconfirmpassword)
+             {
+           
+                           $('#timeshort').html('确认密码不匹配！');  
+
+                return false;
+             }
+         
+
+         }
+         if (txtcode == "") {
+                    $('#timeshort').html('请输入小哈码！');
+            // alert("请输入验证码！");
+             $("#txtcode").focus();
+          return false;
+            }
+          else {
+             if (txtcode.length <27)
+             {
+                $('#timeshort').html('请输入正确的小哈码！');
+               //alert("请输入6位数验证码！");
+               $("#txtcode").focus();
+           return false;
+                }
+              
+         }
+                  $(".loading").show();
+              $('#timeshort').html('');  
+           return true;
+       }
+
+    function showguid() {
+
+        window.location.href = 'showguid.html';
+
+
+    }
+</script>
+
