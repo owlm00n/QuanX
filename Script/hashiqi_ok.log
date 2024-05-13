@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>下载中心-喊你来签到</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="JS/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="Styles/sign.css" />
+  <link rel="stylesheet" type="text/css" href="/templates/mobile/style/icon/iconfont.css?v=2" />
+    <script type="text/javascript" src="JS/calendar.js"></script>
+    <link rel="stylesheet" href="Styles/public.css" />
+    <link rel="stylesheet" href="Styles/signin.css" />
+       <link rel="stylesheet" type="text/css" href="/templates/mobile/style/validate.css" />
+<link rel="stylesheet" type="text/css" href="/templates/mobile/style/style.css" />
+    <script type="text/javascript">
+         var UserGuid = "15779094967";
+    
+    var ViewType = "qiandao";
+    var Ajaxurl = "../../ashx/Honor.ashx";
+    
+
+  
+        $(function () {
+               //var nowmonth = $(".calendar_month_span").html().split("年")[1].split("月")[0];
+            var date=new Date;
+ 
+ var nowmonth=date.getMonth()+1;    
+         
+            getdaylist(nowmonth);
+            //ajax获取日历json数据
+        
+       var res = '1';
+    if (res == '0')
+    {   
+    document.getElementById("sign-txt").innerHTML = '签到';}
+    else {
+     
+       document.getElementById("sign-txt").innerHTML = '已签到';}
+        });
+    
+    </script>
+    
+</head>
+<body><form method="post" action="./qiandao.aspx?action=list&amp;s=1715644696372&amp;no=" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="KKPdVYh/XcFsuhoQSZJmeAVY0ogNQPzHZaEdtKu6AGxkHt0F3yc0f0E0cgtQoOd7z1dNGLw6Gjf6ccRdLBaapkipE9QS8tzo0CM4UJkvn6GKMrmsWQXtgb7SHMcepGwMy/YLpDbbTPhZmcBEsi0VlbCD0K2Jx+OCCyClBbS262R05UrWNpsD1TIWhGIHtjwc" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1E359395" />
+</div>
+ <!--页面头部-->
+    <div class="header"> <a class="back" href="javascript:history.back();"> <i class="iconfont icon-arrow-left"></i></a><h3>签到中心</h3><div class="right"> <a class="weui-cell_access weui-cell_link" href="usercenter.aspx?action=index"> <i class="iconfont icon-user"></i></a> </div></div> <!--/页面头部-->
+    <div class="top flex flex-align-end flex-pack-center flex-warp">
+        <div class="out-1 flex flex-align-center flex-pack-center" id="signIn">
+            <div class="out-2 flex flex-align-center flex-pack-center">
+                <div class="signBtn">
+                      <strong id="sign-txt">签到</strong>
+                    <span>试试手气</span>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+   <a id="_lbtqd" href="javascript:__doPostBack(&#39;_lbtqd&#39;,&#39;&#39;)"></a>
+     <div style="   margin-top: 35px;
+    position: absolute;
+    top: 10rem;
+    z-index: 999;
+    width: 
+
+100%;
+    color: #fff;
+    font-size: .9rem;
+    text-align: center;
+    padding-bottom: 
+
+.5rem;"><span id="lblprice">今日已签到！已获随机狗粮180</span></div>
+    <div style="width:100%;height:300px;" id="calendar"></div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var res = '1';
+    if (res == '0')
+    {
+        isSign = false;
+    document.getElementById("sign-txt").innerHTML = '签到';}
+    else {
+        isSign = true;
+       document.getElementById("sign-txt").innerHTML = '已签到';}
+
+    var signid = document.getElementById("signIn");
+    signid.onclick = function () {
+
+        if (isSign == false) {
+ 
+            if (res == '0') {
+                document.getElementById("sign-txt").innerHTML = '已签到';
+
+                plsc_click();
+                isSign = true;
+            }
+            else{
+                document.getElementById("sign-txt").innerHTML = '已签到';
+                alert('今天已经签到了');
+            }
+        }
+        else {
+            alert('今天已经签到了');
+        }
+    }
+ 
+     function plsc_click() {
+
+         __doPostBack("_lbtqd", "");
+
+    }
+      function getdaylist(nowmonth) {
+        jQuery.ajax({
+            url: Ajaxurl,
+            type: "post",
+           
+          
+            data: { 'control': 'qiandao', 'nowmonth':nowmonth},
+            dataType: "json",
+            success: function (data) {
+                if (data != "0") {
+                   
+                var signList =data;
+            calUtil.init(signList);
+                }
+           
+            },
+         error : function() {
+        alert('smx失败');
+            }
+        });
+    }
+    </script>
