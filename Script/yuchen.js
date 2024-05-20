@@ -61,7 +61,8 @@ else {
   $.http.post(reqData)
     .then((resp) => {
       if (resp.statusCode == 200) {
-        $.msgBody = date.getMonth() + 1 + "月" + date.getDate() + "日, 签到完成 🎉" + \n + resp.body
+        var msg = JSON.parse(resp.body).msg;
+        $.msgBody = date.getMonth() + 1 + "月" + date.getDate() + "日, 签到完成 🎉" + "\n" + msg
       } else if (resp.statusCode == 403) {
         $.msgBody = "服务器暂停签到 ⚠️"
       } else {
