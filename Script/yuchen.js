@@ -3,56 +3,101 @@
  * @fileoverview Template to compose HTTP reqeuest.
  * 
  */
+/*
+IOS yuchen签到脚本
+/**
+更新时间: 2024.5.20
+脚本兼容: QuantumultX
+author: @owlm00n
 
-const url = `https://yuchen.tonghuaios.com/wp-admin/admin-ajax.php`;
-const method = `POST`;
-const headers = {
-'X-Requested-With' : `XMLHttpRequest`,
-'Sec-Fetch-Dest' : `empty`,
-'Connection' : `keep-alive`,
-'Accept-Encoding' : `gzip, deflate, br`,
-'Content-Type' : `application/x-www-form-urlencoded; charset=UTF-8`,
-'Sec-Fetch-Site' : `same-origin`,
-'Origin' : `https://yuchen.tonghuaios.com`,
-'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1`,
-'Sec-Fetch-Mode' : `cors`,
-'Cookie' : `wordpress_sec_3fded9bb7b81e244ce750634dc5801ae=W169529718871%7C1716479418%7C83NDHlNU71rh6WGz5bxd5USWblwDWkckgnZPFpL1MJI%7C2385f55844347d93b43f812be3621a0a6335956078cb09218ae66654fe55802e; pps_cookie_431=3_days; wordpress_logged_in_3fded9bb7b81e244ce750634dc5801ae=W169529718871%7C1716479418%7C83NDHlNU71rh6WGz5bxd5USWblwDWkckgnZPFpL1MJI%7C96c46d13768e828375eedab51fb77b20c568438150d94a1a9fefad4f59b83af9; Hm_lpvt_9b06a186a026bf08db4df6b387ebfd56=1715269772; Hm_lvt_9b06a186a026bf08db4df6b387ebfd56=1714712628,1714842847,1714850102,1715269772`,
-'Host' : `yuchen.tonghuaios.com`,
-'Referer' : `https://yuchen.tonghuaios.com/users?tab=orders`,
-'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
-'Accept' : `application/json, text/javascript, */*; q=0.01`
-};
-const body = `action=daily_sign`;
+抓取Cookie说明:
+浏览器打开 https://www.52pojie.cn/home.php 登录账号后, 开启抓包软件并刷新页面.
+抓取该URL请求头下的Cookie字段, 填入以下CookieWA的单引号内即可. */
+*/
+const CookieWA = 'wordpress_sec_3fded9bb7b81e244ce750634dc5801ae=W169529718871%7C1716479418%7C83NDHlNU71rh6WGz5bxd5USWblwDWkckgnZPFpL1MJI%7C2385f55844347d93b43f812be3621a0a6335956078cb09218ae66654fe55802e; pps_cookie_431=3_days; wordpress_logged_in_3fded9bb7b81e244ce750634dc5801ae=W169529718871%7C1716479418%7C83NDHlNU71rh6WGz5bxd5USWblwDWkckgnZPFpL1MJI%7C96c46d13768e828375eedab51fb77b20c568438150d94a1a9fefad4f59b83af9; Hm_lpvt_9b06a186a026bf08db4df6b387ebfd56=1715269772; Hm_lvt_9b06a186a026bf08db4df6b387ebfd56=1714712628,1714842847,1714850102,1715269772';
 
-const myRequest = {
-    url: url,
-    method: method,
-    headers: headers,
-    body: body
-};
+//Bark APP 通知推送Key
+const barkKey = '';
 
-$task.fetch(myRequest).then(response => {
-    await SendMsg(response.statusCode + "\n\n" + response.body)//带上总结推送通知
-    console.log(response.statusCode + "\n\n" + response.body);
-    $done();
-}, reason => {
-    console.log(reason.error);
-    $done();
-});
+/***********************
+QuantumultX 远程脚本配置:
+************************
 
+[task_local]
+# 吾爱签到
+1 0 * * * https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js
 
-// 发送消息
-async function SendMsg(message) {
-    if (!message) return;
-    if (Notify > 0) {
-        if ($.isNode()) {
-            await notify.sendNotify($.name, message)
-        } else {
-            $.msg($.name, '', message)
-        }
-    } else {
-        console.log(message)
+[rewrite_local]
+# 获取Cookie
+https:\/\/yuchen\.tonghuaios\.com/wp-admin/admin-ajax\.php\? url script-request-header https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js
+
+[mitm] 
+hostname= yuchen.tonghuaios.com
+
+*/
+const $ = API('iosyuchen');
+const date = new Date();
+const reqData = {
+  url: `https://yuchen.tonghuaios.com/wp-admin/admin-ajax.php`,
+  headers: {
+    'X-Requested-With' : `XMLHttpRequest`,
+    'Sec-Fetch-Dest' : `empty`,
+    'Connection' : `keep-alive`,
+    'Accept-Encoding' : `gzip, deflate, br`,
+    'Content-Type' : `application/x-www-form-urlencoded; charset=UTF-8`,
+    'Sec-Fetch-Site' : `same-origin`,
+    'Origin' : `https://yuchen.tonghuaios.com`,
+    'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1`,
+    'Sec-Fetch-Mode' : `cors`,
+    Cookie: CookieWA || $.read("COOKIE"),
+    'Host' : `yuchen.tonghuaios.com`,
+    'Referer' : `https://yuchen.tonghuaios.com/users?tab=orders`,
+    'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
+    'Accept' : `application/json, text/javascript, */*; q=0.01`   
     }
+  };
+
+if ($.env.isRequest) {
+  GetCookie()
+} else if (!reqData.headers.Cookie) {
+  $.notify('吾爱破解', ``, `未填写/未获取Cookie!`);
+} 
+else {
+  $.http.put(reqData)
+    .then((resp) => {
+      if (resp.statusCode == 200) {
+        $.msgBody = date.getMonth() + 1 + "月" + date.getDate() + "日, 签到完成 🎉" + \n + resp.body
+      } else if (resp.statusCode == 403) {
+        $.msgBody = "服务器暂停签到 ⚠️"
+      } else {
+        $.msgBody = "脚本待更新 ‼️‼️"
+      }
+    })
+    .catch((err) => ($.msgBody = `签到失败 ‼️‼️\n${err || err.message}`))
+    .finally(async () => {
+      if (barkKey) {
+        await BarkNotify($, barkKey, 'iosyuchen', $.msgBody);
+      }
+      $.notify('ios yuchen', ``, $.msgBody);
+      $.done();
+    })
+}
+
+function GetCookie() {
+  const TM = $.read("TIME");
+  const CK = $request.headers['Cookie'] || $request.headers['cookie'];
+  if (CK) {
+    $.write(CK, "COOKIE");
+    if (!TM || TM && (Date.now() - TM) / 1000 >= 21600) {
+      $.notify("ios yuchen", "", `写入Cookie成功 🎉`);
+      $.write(JSON.stringify(Date.now()), "TIME");
+    } else {
+      $.info(`ios yuchen\n写入Cookie成功 🎉`)
+    }
+  } else {
+    $.info(`ios yuchen\n写入Cookie失败, 关键值缺失`)
+  }
+  $.done()
 }
 
 //Bark APP notify
