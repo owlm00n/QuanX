@@ -70,7 +70,7 @@ const reqData = {
         'Referer' : `https://iios.songshuyouxi.com/user`,
         'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
         'Accept' : `application/json, text/javascript, */*; q=0.01`
-    };
+    },
     body: `action=user_qiandao&nonce=` + nonceValue
 };
 
