@@ -37,7 +37,9 @@ const getData = {
 $.http.get(getData)
     .then((resp) => {
       if (resp.statusCode == 200) {
-        const button = document.querySelector('.go-user-qiandao');
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = resp.body;
+        const button = tempDiv.querySelector('.go-user-qiandao');
         console.log(button);
         nonceValue = button.getAttribute('data-nonce');
         console.log(nonceValue);
