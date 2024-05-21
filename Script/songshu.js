@@ -18,9 +18,9 @@ const date = new Date();
 
 const nonceValue = '';
 const getData = {
-    url = `https://iios.songshuyouxi.com/user`;
+    url: `https://iios.songshuyouxi.com/user`,
     headers: {
-        getcookie: GetCookieWa,
+        Cookie: GetCookieWa,
         'Sec-Fetch-Mode' : `navigate`,
         'Connection' : `keep-alive`,
         'Accept' : `text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`,
@@ -30,8 +30,8 @@ const getData = {
         'Sec-Fetch-Site' : `none`,
         'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
         'Sec-Fetch-Dest' : `document`
-    };
-    body = ``
+    },
+    body: ``
 };
 
 $.http.get(getData)
