@@ -54,7 +54,7 @@ $.http.get(getData)
     })
 
 const reqData = {
-    url: `https://iios.songshuyouxi.com/wp-admin/admin-ajax.php`，
+    url: `https://iios.songshuyouxi.com/wp-admin/admin-ajax.php`,
     headers: {
         'X-Requested-With' : `XMLHttpRequest`,
         'Sec-Fetch-Dest' : `empty`,
