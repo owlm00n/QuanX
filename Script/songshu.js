@@ -12,11 +12,9 @@ const PutCookieWA = 'wordpress_sec_1c7d00f82b03760c42141efd416a59a8=mpweixin_163
 const GetCookieWa = 'wordpress_logged_in_1c7d00f82b03760c42141efd416a59a8=mpweixin_74596770%7C1716443988%7CsIZDbgaWxvsYV0US7X0XkFiUkSLPDd6SihF3AnamOV0%7Cee134e1a32b33b045c3e2d34523bdad281924a676306f976cc08a229efbc4487; PHPSESSID=kcr924nk6c50rh0mtifff326ot';
 const barkKey = '';
 const nonceValue = '';
-
 const $ = API('songshu')
 const date = new Date();
 
-const nonceValue = '';
 const getData = {
     url: `https://iios.songshuyouxi.com/user`,
     headers: {
