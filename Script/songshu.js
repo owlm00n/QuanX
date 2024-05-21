@@ -11,6 +11,7 @@ author: @owlm00n
 const PutCookieWA = 'wordpress_sec_1c7d00f82b03760c42141efd416a59a8=mpweixin_16399985%7C1715925388%7CPKjEXGG7sgmiaPr0G5Wx8HSkaJnDSipT90vyMBS4U2S%7Ceb5492c7a67b548801f8dd87dbd09fd481fe6e7c81dab3216899f7febab2d9ef; wordpress_logged_in_1c7d00f82b03760c42141efd416a59a8=mpweixin_16399985%7C1715925388%7CPKjEXGG7sgmiaPr0G5Wx8HSkaJnDSipT90vyMBS4U2S%7Cd957cb137d1c713b01de31102bb0a16177de695c4691460b78d018ee27e9511b; wordpress_test_cookie=WP%20Cookie%20check; PHPSESSID=fnvcjmiii07s0qv2gsloaun1ia; ripro_notice_cookie=1';
 const GetCookieWa = 'wordpress_logged_in_1c7d00f82b03760c42141efd416a59a8=mpweixin_74596770%7C1716443988%7CsIZDbgaWxvsYV0US7X0XkFiUkSLPDd6SihF3AnamOV0%7Cee134e1a32b33b045c3e2d34523bdad281924a676306f976cc08a229efbc4487; PHPSESSID=kcr924nk6c50rh0mtifff326ot';
 const barkKey = '';
+const nonceValue = '';
 
 const $ = API('songshu')
 const date = new Date();
@@ -36,9 +37,10 @@ const getData = {
 $.http.get(getData)
     .then((resp) => {
       if (resp.statusCode == 200) {
-        const nonceValue = getNonceValue(resp.body);
-        console.log(nonceValue);
-        $.msgBody = "获取nonce" + nonceValue；
+        console.log(resp.body);
+        nonceValue = getNonceValue(resp.body);
+        //console.log(nonceValue);
+        $.msgBody = "获取nonce: " + nonceValue;
       } else if (resp.statusCode == 403) {
         $.msgBody = "服务器暂停 ⚠️"
       } else {
@@ -53,7 +55,53 @@ $.http.get(getData)
       $.notify('ios 松鼠', ``, $.msgBody);
     })
 
+const reqData = {
+    url = `https://iios.songshuyouxi.com/wp-admin/admin-ajax.php`，
+    headers: {
+        'X-Requested-With' : `XMLHttpRequest`,
+        'Sec-Fetch-Dest' : `empty`,
+        'Connection' : `keep-alive`,
+        'Accept-Encoding' : `gzip, deflate, br`,
+        'Content-Type' : `application/x-www-form-urlencoded; charset=UTF-8`,
+        'Sec-Fetch-Site' : `same-origin`,
+        'Origin' : `https://iios.songshuyouxi.com`,
+        'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x1800312c) NetType/4G Language/zh_CN`,
+        'Sec-Fetch-Mode' : `cors`,
+        Cookie: PutCookieWA || $.read("COOKIE"),
+        'Host' : `iios.songshuyouxi.com`,
+        'Referer' : `https://iios.songshuyouxi.com/user`,
+        'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
+        'Accept' : `application/json, text/javascript, */*; q=0.01`
+    };
+    body = `action=user_qiandao&nonce=` + nonceValue
+};
 
+if ($.env.isRequest) {
+  GetCookie()
+} else if (!reqData.headers.Cookie) {
+  $.notify('IOS松鼠', ``, `未填写/未获取Cookie!`);
+} 
+else {
+  $.http.post(reqData)
+    .then((resp) => {
+      if (resp.statusCode == 200) {
+        var msg = JSON.parse(resp.body).msg;
+        $.msgBody = date.getMonth() + 1 + "月" + date.getDate() + "日, 签到完成 🎉" + "\n" + msg
+      } else if (resp.statusCode == 403) {
+        $.msgBody = "服务器暂停签到 ⚠️"
+      } else {
+        $.msgBody = "脚本待更新 ‼️‼️"
+      }
+    })
+    .catch((err) => ($.msgBody = `签到失败 ‼️‼️\n${err || err.message}`))
+    .finally(async () => {
+      if (barkKey) {
+        await BarkNotify($, barkKey, 'ios 松鼠', $.msgBody);
+      }
+      $.notify('ios 松鼠', ``, $.msgBody);
+      $.done();
+    })
+}
 
 function getNonceValue(respBody) {
   // 使用正则表达式匹配data-nonce属性的值
