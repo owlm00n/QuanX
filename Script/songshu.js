@@ -59,53 +59,8 @@ $.http.get(getData)
     })
 
 
-const reqData = {
-    url = `https://iios.songshuyouxi.com/wp-admin/admin-ajax.php`，
-    headers: {
-        'X-Requested-With' : `XMLHttpRequest`,
-        'Sec-Fetch-Dest' : `empty`,
-        'Connection' : `keep-alive`,
-        'Accept-Encoding' : `gzip, deflate, br`,
-        'Content-Type' : `application/x-www-form-urlencoded; charset=UTF-8`,
-        'Sec-Fetch-Site' : `same-origin`,
-        'Origin' : `https://iios.songshuyouxi.com`,
-        'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x1800312c) NetType/4G Language/zh_CN`,
-        'Sec-Fetch-Mode' : `cors`,
-        Cookie: PutCookieWA || $.read("COOKIE"),
-        'Host' : `iios.songshuyouxi.com`,
-        'Referer' : `https://iios.songshuyouxi.com/user`,
-        'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
-        'Accept' : `application/json, text/javascript, */*; q=0.01`
-    };
-    body = `action=user_qiandao&nonce=` + nonceValue
-};
 
-if ($.env.isRequest) {
-  GetCookie()
-} else if (!reqData.headers.Cookie) {
-  $.notify('IOS松鼠', ``, `未填写/未获取Cookie!`);
-} 
-else {
-  $.http.post(reqData)
-    .then((resp) => {
-      if (resp.statusCode == 200) {
-        var msg = JSON.parse(resp.body).msg;
-        $.msgBody = date.getMonth() + 1 + "月" + date.getDate() + "日, 签到完成 🎉" + "\n" + msg
-      } else if (resp.statusCode == 403) {
-        $.msgBody = "服务器暂停签到 ⚠️"
-      } else {
-        $.msgBody = "脚本待更新 ‼️‼️"
-      }
-    })
-    .catch((err) => ($.msgBody = `签到失败 ‼️‼️\n${err || err.message}`))
-    .finally(async () => {
-      if (barkKey) {
-        await BarkNotify($, barkKey, 'iosyuchen', $.msgBody);
-      }
-      $.notify('ios yuchen', ``, $.msgBody);
-      $.done();
-    })
-}
+
 
 function GetCookie() {
   const TM = $.read("TIME");
