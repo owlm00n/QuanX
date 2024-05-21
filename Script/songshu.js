@@ -9,8 +9,7 @@ author: @owlm00n
 */
 
 const PutCookieWA = 'wordpress_sec_1c7d00f82b03760c42141efd416a59a8=mpweixin_16399985%7C1715925388%7CPKjEXGG7sgmiaPr0G5Wx8HSkaJnDSipT90vyMBS4U2S%7Ceb5492c7a67b548801f8dd87dbd09fd481fe6e7c81dab3216899f7febab2d9ef; wordpress_logged_in_1c7d00f82b03760c42141efd416a59a8=mpweixin_16399985%7C1715925388%7CPKjEXGG7sgmiaPr0G5Wx8HSkaJnDSipT90vyMBS4U2S%7Cd957cb137d1c713b01de31102bb0a16177de695c4691460b78d018ee27e9511b; wordpress_test_cookie=WP%20Cookie%20check; PHPSESSID=fnvcjmiii07s0qv2gsloaun1ia; ripro_notice_cookie=1';
-const GetCookieWa = `wordpress_logged_in_1c7d00f82b03760c42141efd416a59a8=mpweixin_74596770%7C1716428835%7CdaZS2sZVGpt911ENSCBg8Ld886vyAARIFzsKMalXYjG%7Ceeec847342fdb05e677c0e5624a6dd4fee49df0c59764876a8c8c8b88d5735cd; wordpress_test_cookie=WP%20Cookie%20check; PHPSESSID=iaunmm94l4tnta5umsshvcdt7k; ripro_notice_cookie=1`;
-//Bark APP 通知推送Key
+const GetCookieWa = 'wordpress_logged_in_1c7d00f82b03760c42141efd416a59a8=mpweixin_74596770%7C1716443988%7CsIZDbgaWxvsYV0US7X0XkFiUkSLPDd6SihF3AnamOV0%7Cee134e1a32b33b045c3e2d34523bdad281924a676306f976cc08a229efbc4487; PHPSESSID=kcr924nk6c50rh0mtifff326ot';
 const barkKey = '';
 
 const $ = API('songshu')
@@ -39,7 +38,7 @@ $.http.get(getData)
       if (resp.statusCode == 200) {
         const nonceValue = getNonceValue(resp.body);
         console.log(nonceValue);
-        $.msgBody = "获取nonce" + button + nonceValue；
+        $.msgBody = "获取nonce" + nonceValue；
       } else if (resp.statusCode == 403) {
         $.msgBody = "服务器暂停 ⚠️"
       } else {
@@ -63,12 +62,6 @@ function getNonceValue(respBody) {
   // 如果匹配成功，则返回nonce值，否则返回undefined
   return match ? match[1] : undefined;
 }
-
-// 调用函数并传入HTML内容
-const nonceValue = getNonceValue(resp.body);
-console.log(nonceValue);
-
-
 
 function GetCookie() {
   const TM = $.read("TIME");
