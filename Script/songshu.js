@@ -37,11 +37,7 @@ const getData = {
 $.http.get(getData)
     .then((resp) => {
       if (resp.statusCode == 200) {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = resp.body;
-        const button = tempDiv.querySelector('.go-user-qiandao');
-        console.log(button);
-        nonceValue = button.getAttribute('data-nonce');
+        const nonceValue = getNonceValue(resp.body);
         console.log(nonceValue);
         $.msgBody = "获取nonce" + button + nonceValue；
       } else if (resp.statusCode == 403) {
@@ -59,6 +55,18 @@ $.http.get(getData)
     })
 
 
+
+function getNonceValue(respBody) {
+  // 使用正则表达式匹配data-nonce属性的值
+  const match = /data-nonce="([^"]*)"/.exec(respBody);
+
+  // 如果匹配成功，则返回nonce值，否则返回undefined
+  return match ? match[1] : undefined;
+}
+
+// 调用函数并传入HTML内容
+const nonceValue = getNonceValue(resp.body);
+console.log(nonceValue);
 
 
 
