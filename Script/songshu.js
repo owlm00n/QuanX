@@ -56,7 +56,7 @@ $.http.get(getData)
     })
 
 const reqData = {
-    url = `https://iios.songshuyouxi.com/wp-admin/admin-ajax.php`，
+    url: `https://iios.songshuyouxi.com/wp-admin/admin-ajax.php`，
     headers: {
         'X-Requested-With' : `XMLHttpRequest`,
         'Sec-Fetch-Dest' : `empty`,
@@ -73,7 +73,7 @@ const reqData = {
         'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
         'Accept' : `application/json, text/javascript, */*; q=0.01`
     };
-    body = `action=user_qiandao&nonce=` + nonceValue
+    body: `action=user_qiandao&nonce=` + nonceValue
 };
 
 if ($.env.isRequest) {
