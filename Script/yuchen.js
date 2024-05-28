@@ -58,6 +58,7 @@ if ($.env.isRequest) {
   $.notify('吾爱破解', ``, `未填写/未获取Cookie!`);
 } 
 else {
+  $.info(reqData.headers.Cookie)
   $.http.post(reqData)
     .then((resp) => {
       if (resp.statusCode == 200) {
