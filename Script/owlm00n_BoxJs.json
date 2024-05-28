@@ -53,7 +53,7 @@
       "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/52pj.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/52pj.png"]
     }, {
       "id": "iosyuchen",
-      "name": "IOS YUCHEN",
+      "name": "iosyuchen",
       "keys": ["iosyuchen"],
       "descs_html": [
         "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js\">脚本注释</a></h4>"
