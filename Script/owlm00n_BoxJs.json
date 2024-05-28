@@ -54,7 +54,7 @@
     }, {
       "id": "iosyuchen",
       "name": "IOS YUCHEN",
-      "keys": ["COOKIE"],
+      "keys": ["iosyuchen"],
       "descs_html": [
         "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js\">脚本注释</a></h4>"
       ],
