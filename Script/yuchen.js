@@ -84,7 +84,7 @@ function GetCookie() {
   const CK = $request.headers['Cookie'] || $request.headers['cookie'];
   if (CK && (CK.includes('Hm_lpvt') || CK.includes('Hm_lvt'))) {
     $.write(CK, "COOKIE");
-    $.info("COOKIE" + CK)
+    $.info("COOKIE :" + CK)
     if (!TM || TM && (Date.now() - TM) / 1000 >= 21600) {
       $.notify("ios yuchen", "", `写入Cookie成功 🎉`);
       $.write(JSON.stringify(Date.now()), "TIME");
