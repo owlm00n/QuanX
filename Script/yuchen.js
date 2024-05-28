@@ -19,7 +19,7 @@ QuantumultX 远程脚本配置:
 ************************
 
 [task_local]
-# 吾爱签到
+# 签到
 1 0 * * * https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js
 
 [rewrite_local]
