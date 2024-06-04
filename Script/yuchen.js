@@ -83,7 +83,7 @@ else {
 function GetCookie() {
   const TM = $.read("TIME");
   const CK = $request.headers['Cookie'] || $request.headers['cookie'];
-  if (CK && (CK.includes('Hm_lpvt') && CK.includes('Hm_lvt'))) {
+  if (CK && (CK.includes('wordpress_sec_') && CK.includes('wordpress_logged_in_'))) {
     $.write(CK, "COOKIE");
     $.info("COOKIE :" + CK)
     if (!TM || TM && (Date.now() - TM) / 1000 >= 21600) {
