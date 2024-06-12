@@ -35,7 +35,7 @@ const jsName = 'iosziyuan';
 const $ = API(jsName);
 const date = new Date();
 const reqData = {
-  url: `https://yuchen.tonghuaios.com/wp-admin/admin-ajax.php`,
+  url: `https://iosziyuan.com/wp-admin/admin-ajax.php`,
   headers: {
     'X-Requested-With' : `XMLHttpRequest`,
     'Sec-Fetch-Dest' : `empty`,
