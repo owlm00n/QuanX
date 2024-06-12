@@ -1,77 +1,87 @@
 {
-    "id": "owlm00n.app.sub",
-    "name": "owlm00n 脚本订阅",
-    "description": "该订阅兼容BoxJs以及QX Gallery",
-    "author": "@owlm00n",
-    "icon": "https://avatars.githubusercontent.com/u/42443925",
-    "repo": "https://github.com/owlm00n/QuanX",
-    "apps": [{
-      "id": "BaiduTB",
-      "name": "百度贴吧",
-      "keys": ["CookieTB"],
-      "descs_html": [
-        "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js\">脚本注释</a></h4>"
-      ],
-      "settings": [{
-        "id": "BDTB_DailyBonus_Mode",
-        "name": "签到模式",
-        "val": "0",
-        "type": "radios",
-        "desc": "",
-        "items": [{
-          "key": "0",
-          "label": "自动切换"
-        }, {
-          "key": "1",
-          "label": "顺序执行"
-        }, {
-          "key": "2",
-          "label": "并发执行"
-        }]
+  "id": "owlm00n.app.sub",
+  "name": "owlm00n 脚本订阅",
+  "description": "该订阅兼容BoxJs以及QX Gallery",
+  "author": "@owlm00n",
+  "icon": "https://avatars.githubusercontent.com/u/42443925",
+  "repo": "https://github.com/owlm00n/QuanX",
+  "apps": [{
+    "id": "BaiduTB",
+    "name": "百度贴吧",
+    "keys": ["CookieTB"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js\">脚本注释</a></h4>"
+    ],
+    "settings": [{
+      "id": "BDTB_DailyBonus_Mode",
+      "name": "签到模式",
+      "val": "0",
+      "type": "radios",
+      "desc": "",
+      "items": [{
+        "key": "0",
+        "label": "自动切换"
       }, {
-        "id": "BDTB_DailyBonus_notify",
-        "name": "通知汇总",
-        "val": "",
-        "type": "number",
-        "placeholder": "默认20 (点击以展开说明)",
-        "desc": "想签到几个汇总到一个通知里, 这里就填几个(比如我有13个要签到的, 这里填了5, 就会分三次推送通知)"
-      }],
-      "script": "https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js",
-      "author": "@sazs34, @NobyDa",
-      "repo": "https://github.com/sazs34/TaskConfig/blob/master/task/sign_baidu_tieba_v2.js",
-      "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/tieba.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/tieba.png"]
+        "key": "1",
+        "label": "顺序执行"
+      }, {
+        "key": "2",
+        "label": "并发执行"
+      }]
     }, {
-      "id": "52poje",
-      "name": "吾爱破解",
-      "keys": ["nobyda_52pojie"],
-      "descs_html": [
-        "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js\">脚本注释</a></h4>"
-      ],
-      "script": "https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js",
-      "author": "@NobyDa",
-      "repo": "https://github.com/NobyDa/Script/blob/master/52pojie-DailyBonus/52pojie.js",
-      "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/52pj.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/52pj.png"]
-    }, {
-      "id": "iosyuchen",
-      "name": "iosyuchen",
-      "keys": ["iosyuchen"],
-      "descs_html": [
-        "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js\">脚本注释</a></h4>"
-      ],
-      "script": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js",
-      "author": "@owlm00n",
-      "repo": "https://github.com/owlm00n/QuanX",
-      "icons": []
+      "id": "BDTB_DailyBonus_notify",
+      "name": "通知汇总",
+      "val": "",
+      "type": "number",
+      "placeholder": "默认20 (点击以展开说明)",
+      "desc": "想签到几个汇总到一个通知里, 这里就填几个(比如我有13个要签到的, 这里填了5, 就会分三次推送通知)"
     }],
-    "task": [{
-      "config": "15 8 * * * https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, tag=百度贴吧签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/tieba.png",
-      "addons": "https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js_Remote_Cookie.conf, tag=NobyDa Cookie获取"
-    }, {
-      "config": "20 8 * * * https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js, tag=吾爱破解签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/52pj.png",
-      "addons": "https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js_Remote_Cookie.conf, tag=NobyDa Cookie获取"
-    }, {
-      "config": "1 0 * * * https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js, tag=iosyuchen签到",
-      "addons": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Snippet/iosyuchen.snippet, tag=IOS yuchen 重写"
-    }]
-  }
-  
+    "script": "https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js",
+    "author": "@sazs34, @NobyDa",
+    "repo": "https://github.com/sazs34/TaskConfig/blob/master/task/sign_baidu_tieba_v2.js",
+    "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/tieba.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/tieba.png"]
+  }, {
+    "id": "52poje",
+    "name": "吾爱破解",
+    "keys": ["nobyda_52pojie"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js\">脚本注释</a></h4>"
+    ],
+    "script": "https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js",
+    "author": "@NobyDa",
+    "repo": "https://github.com/NobyDa/Script/blob/master/52pojie-DailyBonus/52pojie.js",
+    "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/52pj.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/52pj.png"]
+  }, {
+    "id": "iosyuchen",
+    "name": "iosyuchen",
+    "keys": ["iosyuchen"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js\">脚本注释</a></h4>"
+    ],
+    "script": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js",
+    "author": "@owlm00n",
+    "repo": "https://github.com/owlm00n/QuanX",
+    "icons": []
+  }, {
+    "id": "iosziyuan",
+    "name": "iosziyuan",
+    "keys": ["iosziyuan"],
+    "descs_html": [
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/ziyuan.js\">脚本注释</a></h4>"
+    ],
+    "script": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/ziyuan.js",
+    "author": "@owlm00n",
+    "repo": "https://github.com/owlm00n/QuanX",
+    "icons": []
+  }],
+  "task": [{
+    "config": "15 8 * * * https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, tag=百度贴吧签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/tieba.png",
+    "addons": "https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js_Remote_Cookie.conf, tag=NobyDa Cookie获取"
+  }, {
+    "config": "20 8 * * * https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js, tag=吾爱破解签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/52pj.png",
+    "addons": "https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js_Remote_Cookie.conf, tag=NobyDa Cookie获取"
+  }, {
+    "config": "1 0 * * * https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js, tag=iosyuchen签到",
+    "addons": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Snippet/iosyuchen.snippet, tag=IOS yuchen 重写"
+  }]
+}
