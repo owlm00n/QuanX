@@ -67,9 +67,9 @@
     "name": "iosziyuan",
     "keys": ["iosziyuan"],
     "descs_html": [
-      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/ziyuan.js\">脚本注释</a></h4>"
+      "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/iosziyuan.js\">脚本注释</a></h4>"
     ],
-    "script": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/ziyuan.js",
+    "script": "https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/iosziyuan.js",
     "author": "@owlm00n",
     "repo": "https://github.com/owlm00n/QuanX",
     "icons": []
