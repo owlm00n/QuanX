@@ -1,12 +1,12 @@
 
 /****
-IOS yuchen签到脚本
+脚本名称：iosyuchen签到脚本
 更新时间: 2024.5.20
 脚本兼容: QuantumultX
 author: @owlm00n
 抓取Cookie说明:
-浏览器打开 https://www.52pojie.cn/home.php 登录账号后, 开启抓包软件并刷新页面.
-抓取该URL请求头下的Cookie字段, 填入以下CookieWA的单引号内即可. 
+浏览器打开网页登录账号后, 开启抓包软件并刷新页面.
+抓取该URL请求头下的Cookie字段保存在本地环境, 或者手动填入以下CookieWA的单引号内即可. 优先使用本地保存的
 */
 
 const CookieWA = 'wordpress_sec_3fded9bb7b81e244ce750634dc5801ae=W169529718871%7C1716479418%7C83NDHlNU71rh6WGz5bxd5USWblwDWkckgnZPFpL1MJI%7C2385f55844347d93b43f812be3621a0a6335956078cb09218ae66654fe55802e; pps_cookie_431=3_days; wordpress_logged_in_3fded9bb7b81e244ce750634dc5801ae=W169529718871%7C1716479418%7C83NDHlNU71rh6WGz5bxd5USWblwDWkckgnZPFpL1MJI%7C96c46d13768e828375eedab51fb77b20c568438150d94a1a9fefad4f59b83af9; Hm_lpvt_9b06a186a026bf08db4df6b387ebfd56=1715269772; Hm_lvt_9b06a186a026bf08db4df6b387ebfd56=1714712628,1714842847,1714850102,1715269772';
@@ -29,7 +29,8 @@ https:\/\/yuchen\.tonghuaios\.com/wp-admin/admin-ajax\.php\? url script-request-
 [mitm] 
 hostname= yuchen.tonghuaios.com
 */
-const $ = API('iosyuchen');
+const jsName = 'iosyuchen';
+const $ = API(jsName);
 const date = new Date();
 const reqData = {
   url: `https://yuchen.tonghuaios.com/wp-admin/admin-ajax.php`,
@@ -55,7 +56,7 @@ const reqData = {
 if ($.env.isRequest) {
   GetCookie()
 } else if (!reqData.headers.Cookie) {
-  $.notify('吾爱破解', ``, `未填写/未获取Cookie!`);
+  $.notify(jsName, ``, `未填写/未获取Cookie!`);
 } 
 else {
   $.info(reqData.headers.Cookie)
@@ -87,13 +88,13 @@ function GetCookie() {
     $.write(CK, "COOKIE");
     $.info("COOKIE :" + CK)
     if (!TM || TM && (Date.now() - TM) / 1000 >= 21600) {
-      $.notify("ios yuchen", "", `写入Cookie成功 🎉`);
+      $.notify(jsName, "", `写入Cookie成功 🎉`);
       $.write(JSON.stringify(Date.now()), "TIME");
     } else {
-      $.info(`ios yuchen\n写入Cookie成功 🎉`)
+      $.info(jsName + `\n写入Cookie成功 🎉`)
     }
   } else {
-    $.info(`ios yuchen\n写入Cookie失败, 关键值缺失`)
+    $.info(jsName + `\n写入Cookie失败, 关键值缺失`)
   }
   $.done()
 }
