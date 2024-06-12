@@ -1,0 +1,15 @@
+# 该 QuantumultX 远程重写配置片段用于获取"iosziyuan"账号Cookie
+# 
+# 配置脚本后登录小程序，点击"我的"可完成获取
+# author: @owlm00n
+# https://raw.githubusercontent.com/owlm00n/QuanX/main/Snippet/iosziyuan.snippet
+
+
+# url https://yuchen.tonghuaios.com/wp-content/uploads/2022/04/签到.png
+# 获取Cookie
+^https:\/\/iosziyuan\.com\/wp-admin\/admin-ajax\.php$ url script-request-header https://raw.githubusercontent.com/owlm00n/QuanX/main/Script/yuchen.js
+
+
+hostname= iosziyuan.com
+
+
