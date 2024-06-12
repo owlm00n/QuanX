@@ -74,9 +74,9 @@ else {
     .catch((err) => ($.msgBody = `签到失败 ‼️‼️\n${err || err.message}`))
     .finally(async () => {
       if (barkKey) {
-        await BarkNotify($, barkKey, 'iosyuchen', $.msgBody);
+        await BarkNotify($, barkKey, jsName, $.msgBody);
       }
-      $.notify('ios yuchen', ``, $.msgBody);
+      $.notify(jsName, ``, $.msgBody);
       $.done();
     })
 }
