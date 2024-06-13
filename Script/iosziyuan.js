@@ -52,7 +52,7 @@ const reqData = {
     'Accept-Language' : `en-US,en;q=0.9`,
     'Accept' : `application/json, text/javascript, */*; q=0.01`
     },
-  body: `nonce=3f0fe6b049&action=zb_user_qiandao`
+  body: `nonce=351a54f12e&action=zb_user_qiandao`
   };
 
 if ($.env.isRequest) {
